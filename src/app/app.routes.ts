@@ -10,6 +10,9 @@ export const routes: Routes = [
   {
     path: 'users/:userId',
     component: UserTasksComponent,
+    data: {
+      message: 'hello',
+    },
     children: [
       {
         path: '',
