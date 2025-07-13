@@ -21,6 +21,7 @@ export class NewTaskComponent {
   enteredTitle = signal('');
   enteredSummary = signal('');
   enteredDate = signal('');
+  isSubmitted = false;
   private tasksService = inject(TasksService);
   private router = inject(Router);
 
@@ -33,13 +34,17 @@ export class NewTaskComponent {
       },
       this.userId()
     );
+    this.isSubmitted = true;
     this.router.navigate(['/users', this.userId(), 'tasks']);
   }
 }
 export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (
   component
 ) => {
-  const { enteredDate, enteredSummary, enteredTitle } = component;
+  const { enteredDate, enteredSummary, enteredTitle, isSubmitted } = component;
+  if (isSubmitted) {
+    return true;
+  }
   if (enteredDate() || enteredSummary() || enteredTitle()) {
     return window.confirm(
       'Do you want to leave this page. Your data might not be saved'
