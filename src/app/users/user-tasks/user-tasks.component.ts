@@ -51,7 +51,7 @@ export class UserTasksComponent implements OnInit {
 }
 
 export const resolveUserName: ResolveFn<string> = (
-  activatedRoute: ActivatedRouteSnapshot, // this calls everyTime even it is same component. so dont need to subscribe
+  activatedRoute: ActivatedRouteSnapshot, // this calls everyTime routeparam changes even it is same component. so dont need to subscribe
   routerStateSnapshot: RouterStateSnapshot
 ) => {
   const usersService = inject(UsersService);
