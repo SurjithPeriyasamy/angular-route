@@ -1,3 +1,10 @@
+<p>
+  <a
+    routerLink="./"
+    [queryParams]="{ order: order() === 'asc' ? 'desc' : 'asc' }"
+    >Sorting {{ order() === "asc" ? "Descending" : "Ascending" }}
+  </a>
+</p>
 <ul>
   @for (task of userTasks(); track task.id) {
   <li>
