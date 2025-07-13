@@ -62,3 +62,9 @@ export const resolveUserName: ResolveFn<string> = (
     )?.name || ''
   );
 };
+export const resolveTitle: ResolveFn<string> = (
+  activatedRoute: ActivatedRouteSnapshot,
+  routerStateSnapshot: RouterStateSnapshot
+) => {
+  return resolveUserName(activatedRoute, routerStateSnapshot) + "'s Tasks";
+};
