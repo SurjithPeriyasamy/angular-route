@@ -35,7 +35,9 @@ export class NewTaskComponent {
       this.userId()
     );
     this.isSubmitted = true;
-    this.router.navigate(['/users', this.userId(), 'tasks']);
+    this.router.navigate(['/users', this.userId(), 'tasks'], {
+      replaceUrl: true,
+    });
   }
 }
 export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (
