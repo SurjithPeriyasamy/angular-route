@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { HeaderComponent } from './header/header.component';
 import { UsersComponent } from './users/users.component';
-import { RouterOutlet } from '../../node_modules/@angular/router/index';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',

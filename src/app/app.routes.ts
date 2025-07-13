@@ -3,7 +3,7 @@ import { TasksComponent } from './tasks/tasks.component';
 
 export const routes: Routes = [
   {
-    path: 'task',
+    path: 'tasks',
     component: TasksComponent,
   },
 ];
