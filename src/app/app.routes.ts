@@ -6,7 +6,10 @@ import {
   UserTasksComponent,
 } from './users/user-tasks/user-tasks.component';
 import { resolveUserTasks, TasksComponent } from './tasks/tasks.component';
-import { NewTaskComponent } from './tasks/new-task/new-task.component';
+import {
+  canLeaveEditPage,
+  NewTaskComponent,
+} from './tasks/new-task/new-task.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { inject } from '@angular/core';
 
@@ -25,7 +28,7 @@ export const routes: Routes = [
   {
     path: 'users/:userId',
     component: UserTasksComponent,
-    canMatch: [dummyCanMatch],
+    // canMatch: [dummyCanMatch],
     data: {
       message: 'hello',
     },
@@ -50,6 +53,7 @@ export const routes: Routes = [
       {
         path: 'tasks/new',
         component: NewTaskComponent,
+        canDeactivate: [canLeaveEditPage],
       },
     ],
   },
