@@ -34,7 +34,8 @@ export const routes: Routes = [
       userName: resolveUserName,
     },
     title: resolveTitle,
-    children: usersRoutes,
+    loadChildren: () =>
+      import('./users/users.routes').then((mod) => mod.routes),
   },
   {
     path: '**',
