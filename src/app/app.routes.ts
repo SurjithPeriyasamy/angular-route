@@ -9,6 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { inject } from '@angular/core';
 
 import { routes as usersRoutes } from './users/users.routes';
+import { TasksService } from './tasks/tasks.service';
 
 export const dummyCanMatch: CanMatchFn = (routeData) => {
   console.log(routeData, 'routeData');
@@ -22,23 +23,29 @@ export const dummyCanMatch: CanMatchFn = (routeData) => {
 };
 
 export const routes: Routes = [
-  { path: '', component: NoTaskComponent, title: 'No task selected' },
   {
-    path: 'users/:userId',
-    component: UserTasksComponent,
-    // canMatch: [dummyCanMatch],
-    data: {
-      message: 'hello',
-    },
-    resolve: {
-      userName: resolveUserName,
-    },
-    title: resolveTitle,
-    loadChildren: () =>
-      import('./users/users.routes').then((mod) => mod.routes),
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,
+    path: '',
+    providers: [TasksService],
+    children: [
+      { path: '', component: NoTaskComponent, title: 'No task selected' },
+      {
+        path: 'users/:userId',
+        component: UserTasksComponent,
+        // canMatch: [dummyCanMatch],
+        data: {
+          message: 'hello',
+        },
+        resolve: {
+          userName: resolveUserName,
+        },
+        title: resolveTitle,
+        loadChildren: () =>
+          import('./users/users.routes').then((mod) => mod.routes),
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
+    ],
   },
 ];
